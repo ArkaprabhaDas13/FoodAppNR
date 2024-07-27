@@ -18,7 +18,7 @@ const Body = () => {
     }, []);
 
 
-    console.log("Body Rendered")
+    console.log("Body Rendered",filtered)
 
 
     const filterFunction = () => {

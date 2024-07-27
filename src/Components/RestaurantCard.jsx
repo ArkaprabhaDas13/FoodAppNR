@@ -3,10 +3,8 @@ import { CDN_URL } from '../utils/constants';
 
 const RestaurantCard = (props)=>{
     
-    const {resData} = props
-    // console.log(resData);
-    const {name, avgRating, locality, cuisines, costForTwo} = resData.info
-    // console.log(name);
+    const {resData} = props         // restaurant data
+    const {name, avgRating, locality, cuisines, costForTwo} = resData.info      // destructuring resData
 
     return(
         <div className='m-4 p-4 bg-blue-100 rounded-lg w-72 h-[400px] shadow-xl hover:bg-blue-50 dark:bg-sky-900'>
@@ -24,6 +22,23 @@ const RestaurantCard = (props)=>{
 
         </div>
     ) 
+}
+
+// Higher Order Component -----------------------------------------------------------------------------------------------
+
+// RestaurantCard ==>> RestaurantCardPromoted
+
+// RestaurantCardPromoted is a HOC which takes RestaurantCard as input and returns another component as output
+
+export const RestaurantCardPromoted = (RestaurantCard)=>{
+    return ()=>{                                        // Every component is basically a function
+        return(                             
+            <div>
+                <p>EvenNumberId</p>
+                <RestaurantCard/>
+            </div>
+        )
+    }
 }
 
 export default RestaurantCard
