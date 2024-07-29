@@ -18,6 +18,7 @@ class About extends React.Component{
     return(
       <div>
         <h1>About</h1>
+        
         <UserClass name={"Arkaprabha Das"}/>
         
       </div>

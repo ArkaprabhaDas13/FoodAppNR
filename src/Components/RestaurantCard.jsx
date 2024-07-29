@@ -7,7 +7,7 @@ const RestaurantCard = (props)=>{
     const {name, avgRating, locality, cuisines, costForTwo} = resData.info      // destructuring resData
 
     return(
-        <div className='m-4 p-4 bg-blue-100 rounded-lg w-72 h-[400px] shadow-xl hover:bg-blue-50 dark:bg-sky-900'>
+        <div className='m-4 p-4 bg-blue-100 rounded-lg w-72 h-[400px] shadow-xl hover:bg-blue-2 00 dark:bg-sky-900'>
             
             <img className='rounded-lg w-[224] h-[264]' src={CDN_URL+resData.info.cloudinaryImageId} alt="" />
             
@@ -30,12 +30,13 @@ const RestaurantCard = (props)=>{
 
 // RestaurantCardPromoted is a HOC which takes RestaurantCard as input and returns another component as output
 
-export const RestaurantCardPromoted = (RestaurantCard)=>{
-    return ()=>{                                        // Every component is basically a function
+export const withEvenId = (RestaurantCard)=>{
+    return (props)=>{                                        // Every component is basically a function
+        console.log("Props = ",props)
         return(                             
             <div>
-                <p>EvenNumberId</p>
-                <RestaurantCard/>
+                <p className='bg-gradient-to-r from-blue-500  to-white pl-2 rounded-md'>Special Offer(HOC)</p>
+                <RestaurantCard resData={props.resData}/>
             </div>
         )
     }

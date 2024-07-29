@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { ShimmerPostList } from "react-shimmer-effects";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 const RestaurantMenu = ()=>{
@@ -25,30 +26,27 @@ const RestaurantMenu = ()=>{
 
     const {name, cuisines} = resInfo?.data?.cards[2]?.card?.card?.info
 
-    const cardData = resInfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[4].card.card.itemCards
-    console.log(cardData)
+    const cardData = resInfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards
+    console.log("Cards = ",resInfo.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards)
+
+
+    const allCards = resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    //Filtering the ItemCategories by @type property
+    const categories = allCards.filter((everyCard)=>everyCard.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+    console.log(categories)
 
     return(
         
-        <div className="menu">
+        <div className="menu text-center dark:bg-purple-950">
+            <h1 className="font-bold text-3xl m-3">{name}</h1>
+            <p>{cuisines.join(", ")}</p>
 
-            <h1>{name}</h1>
+            {categories.map((i)=>{
+                return(
+                    <RestaurantCategory className="m-2 p-2 shadow-md" data={i.card.card.title} />
+                )
+            })}
 
-            <h3>Cuisines</h3>
-            <p>{cuisines.join(', ')}</p>
-
-            <h3>Menu</h3>
-
-            <ul>
-                {/* <li>{cardData[0].card.info.name}</li>
-                <li>Lassi</li>
-                <li>Chai</li> */}
-
-                {cardData.map((item)=><li key={item.card.info.id}>
-                    {item.card.info.name}  - <h4>Rs{(item.card.info.price)/100}</h4> 
-                    <img src="" alt="" />
-                </li>)}
-            </ul>
         </div>
     )
 }

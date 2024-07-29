@@ -1,5 +1,5 @@
 import React from 'react'
-import RestaurantCard from './RestaurantCard'
+import RestaurantCard , {withEvenId} from './RestaurantCard'
 import { resObj } from '../utils/data'
 import { useState, useEffect } from 'react'
 // import Shimmer from './Shimmer'
@@ -12,6 +12,8 @@ const Body = () => {
     const [list, setList] = useState([])
     const [filtered, setFiltered] = useState([])
     const [searchText, setSearchText] = useState("")
+
+    const RestaurantCardEvenId = withEvenId(RestaurantCard)
 
     useEffect(() => {
         fetchData();
@@ -80,9 +82,10 @@ const Body = () => {
 
                 <div className="flex flex-wrap mx-auto w-screen justify-center align-middle gap-6">
                     {
-                        filtered.map((restaurant) =>
-                        (
-                            <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id} > <RestaurantCard resData={restaurant} /> </Link>
+                        filtered.map((restaurant) =>(
+                            <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id} > 
+                                { restaurant.info.id%2===0? <RestaurantCardEvenId resData={restaurant} /> : <RestaurantCard resData={restaurant}/>}
+                            </Link>
                             // This Link is pointing to <RestautantMenu/>
                         ))
                     }
