@@ -4,8 +4,15 @@ import ItemList from './ItemList'
 
 export default RestaurantCategory = ({data})=>{
 
+    const [open, setOpen] = useState(false)
+
+    const handleClick = ()=>{
+        console.log("Button Clicked!")
+        setOpen(!open)
+    }
+
     return(
-        <div className="w-6/12 my-5 mx-auto border shadow-md p-3 font-mono rounded-lg">
+        <div className="w-6/12 my-5 mx-auto border shadow-md p-3 font-mono rounded-lg bg-gray-50">
 
             {/* Accordian Header */}
 
@@ -13,13 +20,13 @@ export default RestaurantCategory = ({data})=>{
 
                 <span className="font-bold text-lg">{data.title} ({data.itemCards.length}) </span>
                 <span className="material-symbols-outlined">
-                    keyboard_arrow_down
+                    <button onClick={handleClick}>keyboard_arrow_down</button>
                 </span>
             </div>
 
             {/* Acccordian Body */}
             
-            <ItemList items={data.itemCards}/>
+            {open && <ItemList items={data.itemCards}/>}
 
         </div>
     )
