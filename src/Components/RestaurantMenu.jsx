@@ -5,7 +5,7 @@ import { ShimmerPostList } from "react-shimmer-effects";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
-import useOnlineStatus from "../utils/useOnlineStatus";
+
 
 const RestaurantMenu = ()=>{
 
@@ -39,11 +39,13 @@ const RestaurantMenu = ()=>{
         
         <div className="menu text-center dark:bg-purple-950">
             <h1 className="font-bold text-3xl m-3">{name}</h1>
-            <p>{cuisines.join(", ")}</p>
+            <p className="mb-10">{cuisines.join(", ")}</p>
 
             {categories.map((i)=>{
                 return(
-                    <RestaurantCategory className="m-2 p-2 shadow-md" data={i.card.card.title} />
+                    <div>
+                        <RestaurantCategory data={i.card.card} />
+                    </div>
                 )
             })}
 
