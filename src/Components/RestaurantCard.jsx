@@ -1,5 +1,6 @@
 import React from 'react'
 import { CDN_URL } from '../utils/constants';
+import offerImg from '../utils/offerImg.png'
 
 const RestaurantCard = (props)=>{
     
@@ -34,8 +35,8 @@ export const withEvenId = (RestaurantCard)=>{
     return (props)=>{                                        // Every component is basically a function
         console.log("Props = ",props)
         return(                             
-            <div>
-                <p className='bg-gradient-to-r from-blue-500  to-white pl-2 rounded-md'>Special Offer(HOC)</p>
+            <div className=''>
+                <p className='text-center bg-black text-white p-2 w-50 rounded-md h-10 border-sky-200 shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]'>Special Offer(HOC)</p>
                 <RestaurantCard resData={props.resData}/>
             </div>
         )

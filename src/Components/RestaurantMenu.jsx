@@ -11,6 +11,8 @@ const RestaurantMenu = ()=>{
 
     // const [resInfo, setResInfo] = useState(null)
 
+    const [isOpen, setIsOpen] = useState()
+
     const {resId} = useParams()
 
     const resInfo = useRestaurantMenu(resId)            // custom hook gets the data from the API
@@ -38,13 +40,13 @@ const RestaurantMenu = ()=>{
     return(
         
         <div className="menu text-center dark:bg-purple-950">
-            <h1 className="font-bold text-3xl m-3">{name}</h1>
+            <h1 className="font-bold text-5xl my-10 ">{name}</h1>
             <p className="mb-10">{cuisines.join(", ")}</p>
 
-            {categories.map((i)=>{
+            {categories.map((i, index)=>{
                 return(
                     <div>
-                        <RestaurantCategory data={i.card.card} />
+                        <RestaurantCategory data={i.card.card} key={i.card.card.title} open={index === isOpen ? true : false} setIsOpen={()=>setIsOpen(index)}/>
                     </div>
                 )
             })}

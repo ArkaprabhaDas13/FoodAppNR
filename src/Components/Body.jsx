@@ -63,7 +63,7 @@ const Body = () => {
         :
 
         (
-            <div className="body dark:bg-blue-950 ">
+            <div className="body dark:bg-blue-950">
 
                 <div className="filter flex justify-center bg-white">
 
