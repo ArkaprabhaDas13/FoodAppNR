@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import Header from './Components/Header'
@@ -10,17 +10,46 @@ import ContactUs from './Components/ContactUs'
 import Error from './Components/Error'
 import RestaurantCard from './Components/RestaurantCard'
 import RestaurantMenu from './Components/RestaurantMenu'
+import UserContext from './utils/UserContext'
+import Cart from './Components/Cart'
+import CartContext from './utils/CartContext'
+
+
 // import Groccery from './Components/Groccery'             //This Groccery Component will be lazy loaded !
 // LAZY LOADING...
 const Groccery = lazy(() => (import('./Components/Groccery')))
 
 
 const AppLayout = () => {
+    
+    const [name, setName] = useState()
+    const [cartList, setCartList] = useState(["fruits", "shoes", "ps5"])
+    
+    const addToCart = (item)=>{
+        setCartList((prevArray)=>[...prevArray, item])
+    }   
+
+
+    useEffect(()=>{
+    
+        // User Authentication Logic
+        const userData = {
+            name: 'John Doe'
+        }
+        setName(userData.name)
+    
+    }, [])
+    
     return (
         <div className='app'>
-            <Header />
-            <Outlet />
-            {/* Outlet is the inbuilt Component which gets replaced with all the Children components */}
+            <CartContext.Provider value={{cartList, addToCart}}>
+                <UserContext.Provider value={{loggedInUser:name, setName}}>
+                    <Header />
+                    <Outlet />
+                    {/* Outlet is the inbuilt Component which gets replaced with all the Children components */}
+                </UserContext.Provider>
+            </CartContext.Provider>
+
         </div>
     )
 }
@@ -54,6 +83,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/groccery',
                 element: <Suspense><Groccery/></Suspense>      // We have to pass JSX!!! inside fallback
+            },
+            {
+                path:'/cart',
+                element:<Cart/>
             }
         ],
         errorElement: <Error />,

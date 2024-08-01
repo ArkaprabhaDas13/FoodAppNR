@@ -1,11 +1,24 @@
 import React from 'react'
 import { CDN_URL } from '../utils/constants';
 import offerImg from '../utils/offerImg.png'
+import { Link } from 'react-router-dom' 
+import CartContext from '../utils/CartContext'
+import { useContext } from 'react'
 
 const RestaurantCard = (props)=>{
     
+    const data = useContext(CartContext);
+    const addToCart = data.addToCart
+
     const {resData} = props         // restaurant data
     const {name, avgRating, locality, cuisines, costForTwo} = resData.info      // destructuring resData
+
+
+    const handleCartClick = (name)=>{
+        console.log("Cart clicked : ", name)
+        addToCart(name)
+    }
+
 
     return(
         <div className='m-4 p-4 bg-blue-100 rounded-lg w-72 h-[400px] shadow-xl hover:bg-blue-2 00 dark:bg-sky-900'>
@@ -18,8 +31,12 @@ const RestaurantCard = (props)=>{
                 <p className='text-neutral-500 dark:text-gray-400'>{locality}</p>
                 <p className='text-neutral-500 dark:text-gray-400'>{costForTwo}</p>
                 <h4 className='text-neutral-500 dark:text-gray-400'>{avgRating}</h4>
+                <Link to={"/cart"}> 
+                    <button className='bg-blue-300 p-2 rounded-lg' onClick={()=>handleCartClick(name)}>Add to Cart</button>
+                </Link>
                 
             </div>
+
 
         </div>
     ) 
@@ -30,6 +47,8 @@ const RestaurantCard = (props)=>{
 // RestaurantCard ==>> RestaurantCardPromoted
 
 // RestaurantCardPromoted is a HOC which takes RestaurantCard as input and returns another component as output
+
+// const RestaurantCardEvenId = withEvenId(RestaurantCard)  [from Body.jsx]
 
 export const withEvenId = (RestaurantCard)=>{
     return (props)=>{                                        // Every component is basically a function

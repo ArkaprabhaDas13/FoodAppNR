@@ -6,32 +6,25 @@ import { useState, useEffect } from 'react'
 import { ShimmerPostList } from "react-shimmer-effects";
 import { Link } from 'react-router-dom'
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
+import { useContext } from 'react';
 
 const Body = () => {
 
+    const data = useContext(UserContext)
+
+    console.log("context = ", data)
     const [list, setList] = useState([])
     const [filtered, setFiltered] = useState([])
     const [searchText, setSearchText] = useState("")
+    
+    
 
-    const RestaurantCardEvenId = withEvenId(RestaurantCard)
+    const RestaurantCardEvenId = withEvenId(RestaurantCard)                             //  Component  ===>  "Higher Order Component"       H O C
 
     useEffect(() => {
         fetchData();
     }, []);
-
-
-    console.log("Body Rendered",filtered)
-
-
-    const filterFunction = () => {
-        console.log("Restaurant List:-")
-        const filteredRes = list.filter((restaurant) => {
-            console.log(restaurant.info.name)
-            return restaurant.info.name.toLowerCase().includes(searchText)
-        })
-        console.log("SearchText = ", searchText)
-        setFiltered(filteredRes)
-    }
 
 
     const fetchData = async () => {
@@ -42,9 +35,24 @@ const Body = () => {
         // The ? is used for optional chaining
         setList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setFiltered(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        console.log(json)
-
+        
+        console.log("JSON = ",json)
     }
+    
+    // console.log("Body Rendered",filtered)
+
+
+    // const filterFunction = () => {
+    //     console.log("Restaurant List:-")
+    //     const filteredRes = list.filter((restaurant) => {
+    //         console.log(restaurant.info.name)
+    //         return restaurant.info.name.toLowerCase().includes(searchText)
+    //     })
+    //     console.log("SearchText = ", searchText)
+    //     setFiltered(filteredRes)
+    // }
+
+
 
 
     const onlineStatus = useOnlineStatus();             // Online Status
@@ -56,9 +64,10 @@ const Body = () => {
         )
     }
 
+    console.log("list second time = ",list)             // list undefined
 
     return list.length === 0 ?
-        <ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />
+        (<ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />)
 
         :
 
@@ -77,6 +86,14 @@ const Body = () => {
                     </div>
 
                 </div>
+
+
+                {/* Context API practice =========== input box of Body.jsx */}
+
+                <div>
+                    UserName : <input className='border' type="text" placeholder={data.loggedInUser} onChange={(e)=>data.setName(e.target.value)}/>
+                </div>
+
 
                 {console.log("Filtered = ", filtered)}
 

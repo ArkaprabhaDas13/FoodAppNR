@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import useOnlineStatus from '../utils/useOnlineStatus'
 import logo from '../utils/logo.png'
+import UserContext from '../utils/UserContext'
 
 const Header = () => {
 
@@ -17,6 +18,8 @@ const Header = () => {
     console.log({theme})
   }
 
+  const data = useContext(UserContext)
+  console.log("User Data = ", data)
   
   useEffect(()=>{
     console.log("rendered again !!!")
@@ -52,9 +55,12 @@ const Header = () => {
                 <li className='px-4 dark:text-gray-300'>Contact Us</li>
                 <li className='px-4 dark:text-gray-300'><Link to='/groccery'>Groccery</Link></li>
                 <li className='px-4 dark:text-gray-300'>CART</li>
-                <button className='login text-blue-400 font-extrabold mx-3'
-                onClick={() => {btn==='Login'?setBtn('Logout'):setBtn('Login')}}
-                >{btn}</button>
+                <li>
+                  <button className='login text-blue-400 font-extrabold mx-3'
+                  onClick={() => {btn==='Login'?setBtn('Logout'):setBtn('Login')}}
+                  >{btn}</button>
+                </li>
+                <li className='font-bold'>{data.loggedInUser}</li>
             </ul>
         </div>
     </div>
