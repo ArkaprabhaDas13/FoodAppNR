@@ -3,8 +3,6 @@ To start the code:
 1. npm install
 2. npx parcel index.html
 
-# Namaste React 🚀
-
 
 # Parcel
 - Dev Build
@@ -27,7 +25,7 @@ To start the code:
 
 
 
-# Namaste Food
+# FoodAppNR
 
 
 /**

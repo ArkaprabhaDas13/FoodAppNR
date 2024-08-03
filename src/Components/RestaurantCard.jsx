@@ -7,17 +7,17 @@ import { useContext } from 'react'
 
 const RestaurantCard = (props)=>{
     
-    const data = useContext(CartContext);
-    const addToCart = data.addToCart
+    // const data = useContext(CartContext);
+    // const addToCart = data.addToCart
 
     const {resData} = props         // restaurant data
     const {name, avgRating, locality, cuisines, costForTwo} = resData.info      // destructuring resData
 
 
-    const handleCartClick = (name)=>{
-        console.log("Cart clicked : ", name)
-        addToCart(name)
-    }
+    // const handleCartClick = (name)=>{
+    //     console.log("Cart clicked : ", name)
+    //     addToCart(name)
+    // }
 
 
     return(
@@ -31,9 +31,11 @@ const RestaurantCard = (props)=>{
                 <p className='text-neutral-500 dark:text-gray-400'>{locality}</p>
                 <p className='text-neutral-500 dark:text-gray-400'>{costForTwo}</p>
                 <h4 className='text-neutral-500 dark:text-gray-400'>{avgRating}</h4>
-                <Link to={"/cart"}> 
+                
+                
+                {/* <Link to={"/cart"}> 
                     <button className='bg-blue-300 p-2 rounded-lg' onClick={()=>handleCartClick(name)}>Add to Cart</button>
-                </Link>
+                </Link> */}
                 
             </div>
 

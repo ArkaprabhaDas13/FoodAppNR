@@ -8,11 +8,10 @@ import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom'
 import About from './Components/About'
 import ContactUs from './Components/ContactUs'
 import Error from './Components/Error'
-import RestaurantCard from './Components/RestaurantCard'
 import RestaurantMenu from './Components/RestaurantMenu'
 import UserContext from './utils/UserContext'
-import Cart from './Components/Cart'
-import CartContext from './utils/CartContext'
+// import Cart from './Components/Cart'
+// import CartContext from './utils/CartContext'
 
 
 // import Groccery from './Components/Groccery'             //This Groccery Component will be lazy loaded !
@@ -23,11 +22,11 @@ const Groccery = lazy(() => (import('./Components/Groccery')))
 const AppLayout = () => {
     
     const [name, setName] = useState()
-    const [cartList, setCartList] = useState(["fruits", "shoes", "ps5"])
+    // const [cartList, setCartList] = useState(["fruits", "shoes", "ps5"])
     
-    const addToCart = (item)=>{
-        setCartList((prevArray)=>[...prevArray, item])
-    }   
+    // const addToCart = (item)=>{
+    //     setCartList((prevArray)=>[...prevArray, item])
+    // }   
 
 
     useEffect(()=>{
@@ -42,14 +41,16 @@ const AppLayout = () => {
     
     return (
         <div className='app'>
-            <CartContext.Provider value={{cartList, addToCart}}>
+            {/* <CartContext.Provider value={{cartList, addToCart}}> */}
+            
                 <UserContext.Provider value={{loggedInUser:name, setName}}>
                     <Header />
                     <Outlet />
                     {/* Outlet is the inbuilt Component which gets replaced with all the Children components */}
                 </UserContext.Provider>
-            </CartContext.Provider>
-
+            
+            {/* </CartContext.Provider> */}
+ v
         </div>
     )
 }
@@ -84,17 +85,19 @@ const appRouter = createBrowserRouter([
                 path: '/groccery',
                 element: <Suspense><Groccery/></Suspense>      // We have to pass JSX!!! inside fallback
             },
-            {
-                path:'/cart',
-                element:<Cart/>
-            }
+            // {
+            //     path:'/cart',
+            //     element:<Cart/>
+            // }
         ],
         errorElement: <Error />,
     }
 ])
 
-const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+// const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));          // create a Root to render in the index.html
-
 root.render(<RouterProvider router={appRouter} />)
