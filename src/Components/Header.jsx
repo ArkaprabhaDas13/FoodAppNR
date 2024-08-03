@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import useOnlineStatus from '../utils/useOnlineStatus'
 import logo from '../utils/logo.png'
 import UserContext from '../utils/UserContext'
+import {useSelector} from 'react-redux'             // Used for SUBSCRIBING to the STORE/Slice
 
 const Header = () => {
 
@@ -35,6 +36,12 @@ const Header = () => {
   }, [btn, theme])
 
 
+  // SUBSCRIBING to the Store for the CART data using useSelector() HOOK  ----------------------------------------------------------------------
+
+    const cartItems = useSelector((store)=>store.cart.items)
+
+  //----------------------------------------------------------------------------------------------------------------------------Subscribe-------
+
 
   return (
     <div className='flex vw-100 justify-between bg-yellow-100 lg:bg-blue-100 dark:bg-sky-900 shadow-xl px-4'>
@@ -54,7 +61,7 @@ const Header = () => {
                 <li className='px-4 dark:text-gray-300'><Link to="/about">About Us</Link></li>
                 <li className='px-4 dark:text-gray-300'>Contact Us</li>
                 <li className='px-4 dark:text-gray-300'><Link to='/groccery'>Groccery</Link></li>
-                <li className='px-4 dark:text-gray-300'>CART</li>
+                <li className='px-4 dark:text-gray-300 text-2xl'><span className="material-symbols-outlined">shopping_cart</span>({cartItems.length})</li>
                 <li>
                   <button className='login text-blue-400 font-extrabold mx-3'
                   onClick={() => {btn==='Login'?setBtn('Logout'):setBtn('Login')}}

@@ -1,6 +1,16 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
+import {addItem} from '../utils/cartSlice'
 
 export default ItemList = ({items})=>{
+
+    const dispatch = useDispatch();
+
+    const handleAddItem = (itemName)=>{
+        // Dispatch an action
+
+        dispatch(addItem(itemName))
+    }
 
     return(
         <div className=''>
@@ -12,7 +22,7 @@ export default ItemList = ({items})=>{
                             <p className='text-gray-700 font-bold p-1 m-2'>Rs {i.card.info.price/100}</p>
                         </div>
 
-                        <button className='bg-green-50  border border-green-500 w-10 h-10 mt-1 rounded-xl font-extrabold hover:bg-green-500'>Add  +</button>
+                        <button className='bg-green-50  border border-green-500 w-10 h-10 mt-1 rounded-xl font-extrabold hover:bg-green-500' onClick={()=>handleAddItem(i.card.info.name)}>Add  +</button>
                     </div>
 
                 )}

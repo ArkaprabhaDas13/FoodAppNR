@@ -10,6 +10,8 @@ import ContactUs from './Components/ContactUs'
 import Error from './Components/Error'
 import RestaurantMenu from './Components/RestaurantMenu'
 import UserContext from './utils/UserContext'
+import {Provider} from 'react-redux'                        // REDUX Store connection
+import appStore from './utils/appStore'                     // REDUX STORE
 // import Cart from './Components/Cart'
 // import CartContext from './utils/CartContext'
 
@@ -42,12 +44,15 @@ const AppLayout = () => {
     return (
         <div className='app'>
             {/* <CartContext.Provider value={{cartList, addToCart}}> */}
-            
+            <Provider store={appStore}>
+
                 <UserContext.Provider value={{loggedInUser:name, setName}}>
                     <Header />
                     <Outlet />
                     {/* Outlet is the inbuilt Component which gets replaced with all the Children components */}
                 </UserContext.Provider>
+
+            </Provider>
             
             {/* </CartContext.Provider> */}
  v
