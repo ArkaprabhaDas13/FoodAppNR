@@ -67,7 +67,7 @@ const Body = () => {
     console.log("list second time = ",list)             // list undefined
 
     return list.length === 0 ?
-        (<ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />)
+        (<ShimmerPostList postStyle="STYLE_FOUR" col={4} row={2} gap={30} />)
 
         :
 

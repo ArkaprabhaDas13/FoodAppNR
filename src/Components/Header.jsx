@@ -54,14 +54,14 @@ const Header = () => {
         <div className='flex items-center'>
             <ul className='flex justify-between p-4 m-4 '>
 
-                <li className='bg-blue-300 px-2 pb-1 rounded-md dark:bg-sky-600'><button onClick={handleTheme} className='font-bold text-xs dark:text-gray-200 ' >{theme} Theme</button></li>
+                <li className='bg-blue-300 px-2 pb-1 rounded-md dark:bg-sky-600'><button onClick={handleTheme} className='font-bold text-xs dark:text-gray-200'>{theme} Theme</button></li>
 
                 <li className='px-4 dark:text-gray-300'>{onlineStatus?'Online 🟢':'Offline 🔴'}</li>
                 <li className='px-4 dark:text-gray-300'><Link to="/">Home</Link></li>
                 <li className='px-4 dark:text-gray-300'><Link to="/about">About Us</Link></li>
                 <li className='px-4 dark:text-gray-300'>Contact Us</li>
                 <li className='px-4 dark:text-gray-300'><Link to='/groccery'>Groccery</Link></li>
-                <li className='px-4 dark:text-gray-300 text-2xl'><span className="material-symbols-outlined">shopping_cart</span>({cartItems.length})</li>
+                <li className='px-4 dark:text-gray-300 text-2xl'><Link to='/cart'><span className="material-symbols-outlined">shopping_cart</span>({cartItems.length})</Link></li>
                 <li>
                   <button className='login text-blue-400 font-extrabold mx-3'
                   onClick={() => {btn==='Login'?setBtn('Logout'):setBtn('Login')}}

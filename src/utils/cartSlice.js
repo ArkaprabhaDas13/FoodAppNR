@@ -6,9 +6,10 @@ const cartSlice = createSlice({     // parameters
     name:'cart',                    // Name
 
     initialState:{                  // Initial State
-        items : ["burger", "pizza", "cheese"]
+        items : []
     },
 
+    // These are the reducers for this particular App Slice
     reducers: {                     // We add ACTIONS inside a REDUCER which means the actions that the cart will do like : (addItem, removeItem, showCart)
 
         addItem: (state,action)=>{                          // ACTION 1
@@ -18,7 +19,9 @@ const cartSlice = createSlice({     // parameters
             state.items.pop()
         },
         clearCart: (state, action)=>{                       // ACTION 3
-            state.items.length = 0;
+            // state.items.length = 0;
+
+            return {items: []}
 
             // state.items = []             This will not work
         }

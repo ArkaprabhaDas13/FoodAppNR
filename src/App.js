@@ -12,7 +12,7 @@ import RestaurantMenu from './Components/RestaurantMenu'
 import UserContext from './utils/UserContext'
 import {Provider} from 'react-redux'                        // REDUX Store connection
 import appStore from './utils/appStore'                     // REDUX STORE
-// import Cart from './Components/Cart'
+import Cart from './Components/Cart'
 // import CartContext from './utils/CartContext'
 
 
@@ -55,7 +55,7 @@ const AppLayout = () => {
             </Provider>
             
             {/* </CartContext.Provider> */}
- v
+ 
         </div>
     )
 }
@@ -90,10 +90,10 @@ const appRouter = createBrowserRouter([
                 path: '/groccery',
                 element: <Suspense><Groccery/></Suspense>      // We have to pass JSX!!! inside fallback
             },
-            // {
-            //     path:'/cart',
-            //     element:<Cart/>
-            // }
+            {
+                path:'/cart',
+                element:<Cart/>
+            }
         ],
         errorElement: <Error />,
     }
