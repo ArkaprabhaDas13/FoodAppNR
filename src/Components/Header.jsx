@@ -59,7 +59,7 @@ const Header = () => {
                 <li className='px-4 dark:text-gray-300'>{onlineStatus?'Online 🟢':'Offline 🔴'}</li>
                 <li className='px-4 dark:text-gray-300'><Link to="/">Home</Link></li>
                 <li className='px-4 dark:text-gray-300'><Link to="/about">About Us</Link></li>
-                <li className='px-4 dark:text-gray-300'>Contact Us</li>
+                <li className='px-4 dark:text-gray-300'><Link to='/contact' >Contact Us</Link></li>
                 <li className='px-4 dark:text-gray-300'><Link to='/groccery'>Groccery</Link></li>
                 <li className='px-4 dark:text-gray-300 text-2xl'><Link to='/cart'><span className="material-symbols-outlined">shopping_cart</span>({cartItems.length})</Link></li>
                 <li>

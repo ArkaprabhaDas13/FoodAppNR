@@ -4,12 +4,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from './cartSlice'
 
 
+
 const appStore = configureStore({
 
     // This is the REDUCERS for the entire App Store
     
     reducer:{
-        cart: cartReducer
+        cart: cartReducer,
     }
 
 })
